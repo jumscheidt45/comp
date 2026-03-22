@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T45 Labs — Point-Factor Job Evaluation Tool</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>T45 Labs — Point-Factor Job Evaluation Tool</h1>
+    <div class="version">v4.1</div>
+  </header>
+
+  <main class="app-container">
+
+    <!-- Step 1 -->
+    <section class="step" id="step1">
+      <div class="step-label">Step 1</div>
+      <h2>Select Function</h2>
+      <div id="function-buttons"></div>
+    </section>
+
+    <!-- Step 2 -->
+    <section class="step" id="step2">
+      <div class="step-label">Step 2</div>
+      <h2>Set Factor Weights</h2>
+      <div id="weight-controls"></div>
+    </section>
+
+    <!-- Step 3 -->
+    <section class="step" id="step3">
+      <div class="step-label">Step 3</div>
+      <h2>Score All Five Factors</h2>
+      <div id="factor-cards"></div>
+    </section>
+
+    <!-- Results -->
+    <section class="step" id="step4">
+      <div class="step-label">Results</div>
+      <h2>Evaluation Results</h2>
+      <div id="results-panel">
+        <p class="placeholder-text">Score all five factors to see results.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    T45 Labs confidential — not for external distribution | Point ranges preliminary and subject to calibration
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
