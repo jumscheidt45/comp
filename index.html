@@ -3,51 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T45 Labs — Point-Factor Job Evaluation Tool</title>
+  <title>Price Comparison Agent</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
 </head>
 <body>
   <header class="app-header">
-    <h1>T45 Labs — Point-Factor Job Evaluation Tool</h1>
-    <div class="version">v4.1</div>
+    <h1>Price Comparison Agent</h1>
+    <div class="mode-badge" id="mode-badge" hidden></div>
   </header>
 
   <main class="app-container">
 
-    <!-- Step 1 -->
-    <section class="step" id="step1">
+    <section class="step" id="step-suppliers">
       <div class="step-label">Step 1</div>
-      <h2>Select Function</h2>
-      <div id="function-buttons"></div>
+      <h2>Approved Suppliers</h2>
+      <p class="hint">One supplier per line. Alternatives matching this list are flagged as on-list; we still surface cheaper off-list options.</p>
+      <textarea id="suppliers-input" rows="4" placeholder="Digi-Key&#10;Mouser&#10;Arrow Electronics"></textarea>
     </section>
 
-    <!-- Step 2 -->
-    <section class="step" id="step2">
+    <section class="step" id="step-bom">
       <div class="step-label">Step 2</div>
-      <h2>Set Factor Weights</h2>
-      <div id="weight-controls"></div>
-    </section>
+      <h2>Bill of Materials</h2>
 
-    <!-- Step 3 -->
-    <section class="step" id="step3">
-      <div class="step-label">Step 3</div>
-      <h2>Score All Five Factors</h2>
-      <div id="factor-cards"></div>
-    </section>
-
-    <!-- Results -->
-    <section class="step" id="step4">
-      <div class="step-label">Results</div>
-      <h2>Evaluation Results</h2>
-      <div id="results-panel">
-        <p class="placeholder-text">Score all five factors to see results.</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="paste" role="tab">Paste CSV</button>
+        <button class="tab" data-tab="upload" role="tab">Upload CSV / XLSX</button>
+        <button class="tab" data-tab="manual" role="tab">Manual entry</button>
       </div>
+
+      <div class="tab-panel active" data-panel="paste">
+        <p class="hint">Paste rows with headers: <code>part_number, description, qty, current_supplier, current_unit_cost</code>. Tabs or commas both work.</p>
+        <textarea id="paste-input" rows="8" placeholder="part_number,description,qty,current_supplier,current_unit_cost&#10;ABC-123,Widget,100,Digi-Key,1.20&#10;XYZ-789,Gadget,50,Mouser,4.55"></textarea>
+        <button class="btn-secondary" id="parse-paste">Parse pasted CSV</button>
+      </div>
+
+      <div class="tab-panel" data-panel="upload">
+        <p class="hint">CSV or XLSX with headers: <code>part_number, description, qty, current_supplier, current_unit_cost</code>.</p>
+        <input type="file" id="file-input" accept=".csv,.xlsx,.xls">
+      </div>
+
+      <div class="tab-panel" data-panel="manual">
+        <p class="hint">Add rows by hand.</p>
+        <table id="manual-table">
+          <thead>
+            <tr>
+              <th>Part #</th>
+              <th>Description</th>
+              <th>Qty</th>
+              <th>Current supplier</th>
+              <th>Current unit cost</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="manual-body"></tbody>
+        </table>
+        <button class="btn-secondary" id="add-row">+ Add row</button>
+      </div>
+
+      <div class="bom-summary" id="bom-summary">No BOM loaded yet.</div>
+    </section>
+
+    <section class="step" id="step-run">
+      <div class="step-label">Step 3</div>
+      <h2>Run Analysis</h2>
+      <button class="btn-primary" id="run-btn" disabled>Find best prices</button>
+      <div class="status" id="status"></div>
+    </section>
+
+    <section class="step" id="step-results" hidden>
+      <div class="step-label">Results</div>
+      <h2>Suggested Sourcing</h2>
+      <div class="totals" id="totals"></div>
+      <div id="results-panel"></div>
     </section>
 
   </main>
 
   <footer class="app-footer">
-    T45 Labs confidential — not for external distribution | Point ranges preliminary and subject to calibration
+    Powered by Claude with web search · Local development uses mock data unless ANTHROPIC_API_KEY is set
   </footer>
 
   <script type="module" src="js/app.js"></script>

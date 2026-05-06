@@ -1,0 +1,17 @@
+{
+  "name": "bom-price-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Claude-based agent that finds the cheapest sourcing options for a Bill of Materials, comparing approved and off-list suppliers via web search.",
+  "scripts": {
+    "dev": "wrangler pages dev . --port 8788",
+    "deploy": "wrangler pages deploy ."
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1"
+  },
+  "devDependencies": {
+    "wrangler": "^3.95.0",
+    "@cloudflare/workers-types": "^4.20240909.0"
+  }
+}

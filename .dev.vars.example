@@ -1,0 +1,8 @@
+# Copy this file to .dev.vars and fill in real values for local dev.
+# .dev.vars is loaded automatically by `wrangler pages dev`.
+#
+# Without ANTHROPIC_API_KEY (or with MOCK_MODE=true) the API runs in mock
+# mode — useful for building the UI without burning tokens.
+
+ANTHROPIC_API_KEY=
+MOCK_MODE=true
