@@ -1,0 +1,9 @@
+part_number,description,qty,current_supplier,current_unit_cost
+ATMEGA328P-PU,Atmel 8-bit AVR microcontroller DIP-28,250,Digi-Key,2.85
+LM7805CT,5V linear voltage regulator TO-220,500,Mouser,0.45
+C0805C104K5RACTU,Kemet 100nF 50V X7R 0805 capacitor,5000,Digi-Key,0.018
+ERJ-6ENF1002V,Panasonic 10kohm 0805 1% resistor,5000,Arrow Electronics,0.012
+WP7113ID,Kingbright red 5mm LED 625nm,1000,Mouser,0.09
+10118192-0001LF,Amphenol micro-USB receptacle SMT,200,Digi-Key,0.62
+PRT-00116,SparkFun 40-pin male header strip,150,SparkFun,1.50
+ABS-1591D-BK,Hammond 1591D ABS enclosure black,75,,3.95
